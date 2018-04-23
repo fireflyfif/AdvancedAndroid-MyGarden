@@ -148,15 +148,18 @@ public class PlantWateringService extends IntentService {
             int createTimeIndex = cursor.getColumnIndex(PlantContract.PlantEntry.COLUMN_CREATION_TIME);
             int waterTimeIndex = cursor.getColumnIndex(PlantContract.PlantEntry.COLUMN_LAST_WATERED_TIME);
             int plantTypeIndex = cursor.getColumnIndex(PlantContract.PlantEntry.COLUMN_PLANT_TYPE);
-            // COMPLETED: get the plant ID from the cursor
+
+            // COMPLETED: Get the plant ID from the cursor
             plantId = cursor.getLong(indexId);
+
             long timeNow = System.currentTimeMillis();
             long wateredAt = cursor.getLong(waterTimeIndex);
             long createdAt = cursor.getLong(createTimeIndex);
             int plantType = cursor.getInt(plantTypeIndex);
             cursor.close();
 
-            // COMPLETED:
+            // COMPLETED: Hide the water drop button in the widget if it’s been less than
+            // MIN_AGE_BETWEEN_WATER since it was last watered
             canWater = (timeNow - wateredAt) > PlantUtils.MIN_AGE_BETWEEN_WATER &&
                     (timeNow - wateredAt) < PlantUtils.MAX_AGE_WITHOUT_WATER;
 

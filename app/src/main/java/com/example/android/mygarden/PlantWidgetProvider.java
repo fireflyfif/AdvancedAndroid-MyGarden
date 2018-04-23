@@ -89,6 +89,7 @@ public class PlantWidgetProvider extends AppWidgetProvider {
     public static void updatePlantWidgets(Context context, AppWidgetManager appWidgetManager,
                                           int imgRes, long plantId, boolean hasWatered,
                                           int[] appWidgetIds) {
+
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, imgRes, plantId, hasWatered, appWidgetId);
         }
