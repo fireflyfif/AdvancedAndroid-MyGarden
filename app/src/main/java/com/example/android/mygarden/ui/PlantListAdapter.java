@@ -83,7 +83,9 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.Plan
 
     public void swapCursor(Cursor newCursor) {
         if (mCursor != null) {
-            mCursor.close();
+            // No need to closing the cursor, because the loader will release the data once it knows the application
+            // is no longer using it
+            //mCursor.close();
         }
         mCursor = newCursor;
         if (mCursor != null) {
